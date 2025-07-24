@@ -1,0 +1,15 @@
+docker run --rm -it \
+-e ORIGIN_S3_ACCESS_KEY_ID=your-access-key \
+-e ORIGIN_S3_SECRET_ACCESS_KEY=your-secret-key \
+-e ORIGIN_S3_BUCKET=your-bucket-name \
+-e ORIGIN_S3_REGION=auto \
+-e ORIGIN_S3_ENDPOINT=your-endpoint \
+-e ORIGIN_S3_PROVIDER=your-provider \
+-e DESTINATION_S3_ACCESS_KEY_ID=your-access-key \
+-e DESTINATION_S3_SECRET_ACCESS_KEY=your-secret-key \
+-e DESTINATION_S3_BUCKET=your-bucket-name \
+-e DESTINATION_S3_REGION=auto \
+-e DESTINATION_S3_ENDPOINT=your-endpoint \
+-e DESTINATION_S3_PROVIDER=your-provider \
+-e SINGLE_SHOT_MODE=true \
+--name rclone-container rclone-s3-backups

@@ -1,0 +1,1 @@
+docker build -t rclone-s3-backups .

@@ -19,7 +19,7 @@ if (env.RUN_ON_STARTUP || env.SINGLE_SHOT_MODE) {
   await tryBackup();
 
   if (env.SINGLE_SHOT_MODE) {
-    console.log("Database backup complete, exiting...");
+    console.log("S3 storage backup complete, exiting...");
     process.exit(0);
   }
 }

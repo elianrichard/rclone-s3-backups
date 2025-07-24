@@ -1,20 +1,55 @@
 import { envsafe, str, bool } from "envsafe";
 
 export const env = envsafe({
-  AWS_ACCESS_KEY_ID: str(),
-  AWS_SECRET_ACCESS_KEY: str(),
-  AWS_S3_BUCKET: str(),
-  AWS_S3_REGION: str(),
-  BACKUP_DATABASE_URL: str({
-    desc: "The connection string of the database to backup.",
+  ORIGIN_S3_ACCESS_KEY_ID: str(),
+  ORIGIN_S3_SECRET_ACCESS_KEY: str(),
+  ORIGIN_S3_BUCKET: str(),
+  ORIGIN_S3_PROVIDER: str({
+    desc: "The S3 origin provider you want to use. Supported providers: https://rclone.org/#providers",
   }),
-  BACKUP_CRON_SCHEDULE: str({
-    desc: "The cron schedule to run the backup on.",
-    default: "0 5 * * *",
+  ORIGIN_S3_REGION: str({
+    desc: "The S3 origin region you want to use.",
+    default: "auto",
     allowEmpty: true,
   }),
-  AWS_S3_ENDPOINT: str({
-    desc: "The S3 custom endpoint you want to use.",
+  ORIGIN_S3_ENDPOINT: str({
+    desc: "The S3 origin custom endpoint you want to use.",
+    default: "",
+    allowEmpty: true,
+  }),
+  ORIGIN_BUCKET_SUBFOLDER: str({
+    desc: "A subfolder where the files are stored in the origin bucket. Example: 'backups/folder'",
+    default: "",
+    allowEmpty: true,
+  }),
+  DESTINATION_S3_ACCESS_KEY_ID: str(),
+  DESTINATION_S3_SECRET_ACCESS_KEY: str(),
+  DESTINATION_S3_BUCKET: str(),
+  DESTINATION_S3_PROVIDER: str({
+    desc: "The S3 destination provider you want to use. Supported providers: https://rclone.org/#providers",
+  }),
+  DESTINATION_S3_REGION: str({
+    desc: "The S3 destination region you want to use.",
+    default: "auto",
+    allowEmpty: true,
+  }),
+  DESTINATION_S3_ENDPOINT: str({
+    desc: "The S3 destination custom endpoint you want to use.",
+    default: "",
+    allowEmpty: true,
+  }),
+  DESTINATION_BUCKET_SUBFOLDER: str({
+    desc: "A subfolder where the backup files are stored in the destination bucket. Example: 'backups/folder'",
+    default: "",
+    allowEmpty: true,
+  }),
+  BACKUP_CRON_SCHEDULE: str({
+    desc: "The cron schedule to run the backup on. This only works if Single Shot Mode is not enabled.",
+    default: "0 0 * * *",
+    allowEmpty: true,
+  }),
+  ADDITIONAL_RCLONE_FLAGS: str({
+    desc: "Additional flags to pass to rclone. Example: '--transfers 4 --checkers 8'. Read more https://rclone.org/commands",
     default: "",
     allowEmpty: true,
   }),
@@ -23,15 +58,9 @@ export const env = envsafe({
     default: false,
     allowEmpty: true,
   }),
-  BUCKET_SUBFOLDER: str({
-    desc: "A subfolder to place the backup files in",
-    default: "",
-    allowEmpty: true,
-  }),
   SINGLE_SHOT_MODE: bool({
     desc: "Run a single backup on start and exit when completed",
     default: false,
     allowEmpty: true,
   }),
 });
-

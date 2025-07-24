@@ -1,0 +1,32 @@
+{
+  "name": "rclone-s3-backups",
+  "version": "0.0.1",
+  "description": "Simple app to backup files from on bucket to another using rclone",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "dev": "nodemon index.ts",
+    "watch": "tsc --watch"
+  },
+  "author": "Elian Richard",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "rclone",
+    "s3",
+    "backups",
+    "cli"
+  ],
+  "devDependencies": {
+    "@types/cron": "^2.0.1",
+    "@types/node": "^24.1.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "cron": "^4.3.2",
+    "envsafe": "^2.0.3"
+  }
+}

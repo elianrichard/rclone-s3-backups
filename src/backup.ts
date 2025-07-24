@@ -95,8 +95,6 @@ async function syncS3() {
       }
     });
   });
-
-  console.log("S3 buckets synced successfully.");
 }
 
 export default async function backup() {
